@@ -1,0 +1,33 @@
+version: "3"
+services:
+  dev_gpu:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    deploy:
+      resources:
+        limits:
+          cpus: "19"
+          memory: 28g
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+          memory: 26g
+          cpus: "18"
+    container_name: dev_gpu
+    mem_swappiness: 0
+    memswap_limit: 30g
+    ipc: host
+    environment:
+      - DISPLAY=${DISPLAY}
+      - XAUTHORITY=${HOME}/.Xauthority
+    volumes:
+      - ../:/workspace
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ${HOME}/.Xauthority:${HOME}/.Xauthority:rw
+    ports:
+      - "8082:8080"
+    tty: true
+    user: user 
