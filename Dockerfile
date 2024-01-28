@@ -36,20 +36,17 @@ RUN cd /usr/lib/x86_64-linux-gnu && \
     ln -s libnvinfer.so.8 libnvinfer.so.7 && \
     ln -s libnvinfer_plugin.so.8 libnvinfer_plugin.so.7
 
-# install miniconda
-RUN wget -q https://repo.anaconda.com/miniconda/Miniconda3-py38_23.9.0-0-Linux-x86_64.sh -P ./downloads/ && \
-    bash ./downloads/Miniconda3-py38_23.9.0-0-Linux-x86_64.sh -b -p /opt/conda && \
-    rm -rf ./downloads
+RUN apt update
+RUN apt install -y python3.10
+RUN apt install -y python3-pip
 
-# install additional libraries
-RUN conda install -c conda-forge libstdcxx-ng -y
-
-RUN pip install --upgrade pip && \
-    pip install jupyterlab==3.6.3 timeout-decorator==0.5.0 keras-rl==0.4.2 pfrl==0.3.0 \
-    pip install tensorflow==2.13.0 opencv-python==4.8.0.74
-    
-RUN pip install torch==1.13.1+cu117 --extra-index-url https://download.pytorch.org/whl/cu117
-RUN rm -rf ~/.cache/pip && conda clean -a -y
+RUN pip install --upgrade pip
+RUN pip install --upgrade setuptools
+RUN pip install jupyterlab
+RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+RUN pip install  transformers  datasets scikit-learn
+RUN pip install matplotlib
+RUN rm -rf ~/.cache/pip
 RUN locale-gen ja_JP.UTF-8
 
 
