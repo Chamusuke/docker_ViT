@@ -4,6 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: ViT
     deploy:
       resources:
         limits:
@@ -19,8 +20,6 @@ services:
     mem_swappiness: 0
     memswap_limit: 16g 
     ipc: host
-
-    container_name: ViT
     environment:
       - DISPLAY=${DISPLAY}
       - XAUTHORITY=${HOME}/.Xauthority
