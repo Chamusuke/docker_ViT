@@ -7,18 +7,17 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "19"
-          memory: 28g
+          cpus: "6"
+          memory: 16g
         reservations:
           devices:
             - driver: nvidia
               count: 1
               capabilities: [gpu]
-          memory: 26g
-          cpus: "18"
-    container_name: dev_gpu
+          memory: 16g
+          cpus: "6"
     mem_swappiness: 0
-    memswap_limit: 30g
+    memswap_limit: 16g 
     ipc: host
     environment:
       - DISPLAY=${DISPLAY}
