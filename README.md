@@ -27,8 +27,6 @@ memswap_limit: 16g #swap = memswap_limit - memory
 ...
 ```
 
->>cpus and meomry
-
 ```
 docker compose up -d  && docker exec -it --user user ViT bash
 ```
