@@ -1,3 +1,3 @@
-docker stop dev_gpu
-docker rm dev_gpu
+docker stop ViT
+docker rm ViT
 docker ps -l
