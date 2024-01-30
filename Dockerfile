@@ -8,7 +8,6 @@ ENV PYTHONUNBUFFERED=TRUE \
     LANGUAGE=ja_JP:en \
     NVIDIA_VISIBLE_DEVICES=all \
     NVIDIA_DRIVER_CAPABILITIES=utility,compute,graphics \
-    PATH=$PATH:/opt/conda/bin \
     DEBIAN_FRONTEND=noninteractive \
     XLA_FLAGS=--xla_gpu_cuda_data_dir=/usr/local/cuda-11.8
 
@@ -45,7 +44,7 @@ RUN pip install --upgrade setuptools
 RUN pip install jupyterlab
 RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 RUN pip install  transformers  datasets scikit-learn
-RUN pip install matplotlib
+RUN pip install matplotlib bitsandbytes>=0.39.0 accelerate>=0.20.0
 RUN rm -rf ~/.cache/pip
 RUN locale-gen ja_JP.UTF-8
 
