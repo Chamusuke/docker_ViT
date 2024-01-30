@@ -1,2 +1,1 @@
-docker exec -it dev_gpu bash
-
+docker exec -it --user user ViT bash
