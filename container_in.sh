@@ -1,2 +1,2 @@
-docker exec -it --user user ViT bash
+docker exec -it docker_vit bash
 
