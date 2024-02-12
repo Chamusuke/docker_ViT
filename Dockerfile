@@ -8,8 +8,8 @@ ENV PYTHONUNBUFFERED=TRUE \
     LANGUAGE=ja_JP:en \
     NVIDIA_VISIBLE_DEVICES=all \
     NVIDIA_DRIVER_CAPABILITIES=utility,compute,graphics \
-    DEBIAN_FRONTEND=noninteractive \
-    XLA_FLAGS=--xla_gpu_cuda_data_dir=/usr/local/cuda-11.8
+    DEBIAN_FRONTEND=noninteractive 
+#    XLA_FLAGS=--xla_gpu_cuda_data_dir=/usr/local/cuda-11.8
 
 RUN apt-get -qq -y update && \
     apt-get -y install \
@@ -31,24 +31,30 @@ RUN apt-get -qq -y update && \
     && rm -rf /var/lib/apt/lists/* \
     && cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
-RUN cd /usr/lib/x86_64-linux-gnu && \
-    ln -s libnvinfer.so.8 libnvinfer.so.7 && \
-    ln -s libnvinfer_plugin.so.8 libnvinfer_plugin.so.7
+#RUN cd /usr/lib/x86_64-linux-gnu && \
+#    ln -s libnvinfer.so.8 libnvinfer.so.7 && \
+#    ln -s libnvinfer_plugin.so.8 libnvinfer_plugin.so.7
 
-RUN apt update
-RUN apt install -y python3.10
-RUN apt install -y python3-pip
-
-RUN pip install --upgrade pip
-RUN pip install --upgrade setuptools
+RUN apt update \
+    && apt install -y python3.10 \
+    && apt install -y python3-pip
+    
+RUN pip install -U pip setuptools 
 RUN pip install jupyterlab
-RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
-RUN pip install  transformers  datasets scikit-learn
-RUN pip install matplotlib bitsandbytes>=0.39.0 accelerate>=0.20.0
-RUN rm -rf ~/.cache/pip
-RUN locale-gen ja_JP.UTF-8
+RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 
+RUN pip install transformers \
+    datasets \
+    scikit-learn \
+    evaluate \
+    matplotlib \
+    pipreqs \
+    GPUtil \
+    tensorboardX \
+    requests \
+    tqdm \
+    regex sentencepiece sacremoses \
+    && pip install -U accelerate ipywidgets \
+    && rm -rf ~/.cache/pip \
+    && locale-gen ja_JP.UTF-8
 
-
-RUN useradd -m user
-USER user
 WORKDIR /workspace
