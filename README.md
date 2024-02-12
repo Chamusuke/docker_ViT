@@ -49,8 +49,7 @@ such as `-m & --cpus`  \
 [メモリ、CPU、GPU に対する実行時オプション](https://docs.docker.jp/config/container/resource_constraints.html) \
 [Runtime options with Memory, CPUs, and GPUs](https://docs.docker.com/config/containers/resource_constraints/)  
 
-`bash run.sh``
-
+`bash run.sh`  
 run.sh  
 ```
 docker run -it --rm --name vit_docker \
