@@ -44,6 +44,8 @@ docker_vit/
 ```
 
 ## Usage
+[Vision Transformer：オリジナルデータでクラス分類のFineTune　と　推論モデルの作成](https://qiita.com/Chamusuke/items/d4d988fa41ebe27585a9)
+
 Please follow your host environment \
 such as `-m & --cpus`  \
 [メモリ、CPU、GPU に対する実行時オプション](https://docs.docker.jp/config/container/resource_constraints.html) \
